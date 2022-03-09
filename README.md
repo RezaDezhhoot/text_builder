@@ -13,14 +13,15 @@ Put provider inside the config/app.php file and Service Providers section
 ```php
 'providers' => [    
     ...
-    'TextBuilder' => Ermac\TextBuilder\TextBuilderFacade::class,
+    Ermac\TextBuilder\TextBuilderServiceProvider::class,
+    
 ```
 
 And then enter in the alias class 
 ```php
 'aliases' => [    
     ...
-    Ermac\TextBuilder\TextBuilderServiceProvider::class,
+    'TextBuilder' => Ermac\TextBuilder\TextBuilderFacade::class,
 ```
 And run command
 ```bash
@@ -120,6 +121,31 @@ public function roles()
 }
 ```
 ## Methods
+Get parameters
+```php
+$params = TextBuilder::getParameters();
+```
+output
+```php
+Array ( 
+    [0] => Array ( [param] => %orders_price% [description] => ) 
+    [1] => Array ( [param] => %users_name% [description] => description ) 
+    [2] => Array ( [param] => %users_email% [description] => ) 
+    [3] => Array ( [param] => %users_wallet-balance% [description] => ) 
+    [4] => Array ( [param] => %users_orders-price% [description] => ) 
+    [5] => Array ( [param] => %date% [description] => description ) 
+    [6] => Array ( [param] => %time% ) 
+) 
+```
+Do this if you want to get the parameters of certain models
+```php
+$params = TextBuilder::getParameters([Model::class,...]);
+```
+And if you want to ignore parameters, you can use this argument
+```php
+$params = TextBuilder::getParameters('',\App\Models\User::class , ...);
+```
+Now
 ```php
 $text = "Hi %users_name%, your wallet balance is $ %wallet-balance%";
 $text = TextBuilder::make($text,\App\Models\User::find(1) );
