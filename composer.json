@@ -1,0 +1,19 @@
+{
+    "name": "ermac/text_builder",
+    "description": "Create various dynamic texts",
+    "authors": [
+        {
+            "name": "reza dezhhoot",
+            "email": "rdezhhoot@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Ermac\\TextBuilder\\" : "src/"
+        }
+    },
+    "require": {
+        "illuminate/support": "~8",
+        "morilog/jalali": "3.*"
+    }
+}
